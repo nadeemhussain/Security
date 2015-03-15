@@ -1,0 +1,302 @@
+﻿<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>My App</title>
+
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">
+    <link rel="stylesheet" href="styles/app.css" />
+
+    <script src="lib/onsen/js/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+    <!-- Security references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+    <script src="cordova.js"></script>
+
+    <script>
+        var module = angular.module('app', ['onsen']);
+    </script>
+
+    <style>
+        .page--menu-page__background {
+            background-color: #333;
+        }
+
+        .page--menu-page__content {
+            color: white;
+        }
+
+        .menu-close,
+        .menu-close > .toolbar-button {
+            color: #999;
+        }
+
+        .menu-list,
+        .menu-item:first-child,
+        .menu-item:last-child,
+        .menu-item {
+            background-color: transparent;
+            background-image: none !important;
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .menu-item {
+            padding: 0 0 0 20px;
+            line-height: 52px;
+            height: 52px;
+            text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+        }
+
+            .menu-item:active {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+        .menu-notification {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 14px;
+            height: 16px;
+            line-height: 16px;
+            min-width: 16px;
+            font-weight: 600;
+        }
+
+        .bottom-menu-list,
+        .bottom-menu-item:first-child,
+        .bottom-menu-item:last-child,
+        .bottom-menu-item {
+            border-color: #393939;
+            background-color: transparent;
+            background-image: none !important;
+            color: #ccc;
+        }
+
+            .bottom-menu-item:active {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+        .login-form {
+          text-align: center;
+          width: 80%;
+          margin: 60px auto 0;
+        }
+
+        input[type=email], input[type=password] {
+          display: block;
+          width: 100%;
+          margin: 0 auto;
+          outline: none;
+          padding-top: 24px;
+          padding-bottom: 24px;
+        }
+
+        .login-button {
+          width: 100%;
+          margin: 0 auto;
+        }
+
+        .forgot-password {
+          display: block;
+          margin: 8px auto 0 auto;
+          font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <ons-sliding-menu menu-page="menu.html" main-page="page1.html" side="left"
+                      var="menu" type="reveal" max-slide-distance="260px" swipable="true">
+    </ons-sliding-menu>
+
+    <ons-template id="menu.html">
+        <ons-page modifier="menu-page">
+            <ons-toolbar modifier="transparent"></ons-toolbar>
+
+            <ons-list class="menu-list">
+                <ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+                   
+                    HOME
+                </ons-list-item>
+
+                <ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
+                    
+                    Emergency Contact
+                </ons-list-item>
+
+                <ons-list-item class="menu-item" ng-click="menu.setMainPage('page3.html', {closeMenu: true})">
+                   
+                   About us 
+                </ons-list-item>
+            </ons-list>
+
+            <br>
+        <!--        this one is other list 
+            <ons-list class="bottom-menu-list">
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
+                    Settings
+                    <div class="notification menu-notification">3</div>
+                </ons-list-item>
+
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+                    Help
+                </ons-list-item>
+
+                <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
+                    Send feedback
+                </ons-list-item>
+            </ons-list>
+        -->
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="page1.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">HOME</div>
+            </ons-toolbar>
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+                    <ons-button modifier="light" onclick="message()">
+                        Emergency
+                    </ons-button>
+                    <p style="color: #999; font-size: 13px;">Press me,<br> Message will be sent to all your emergency contacts with your location.</p>
+
+                </ons-col>
+            </ons-row>
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="page2.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">Emergency Contact</div>
+            </ons-toolbar>
+
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+                    <div class="login-form">
+
+                        <input type="text" class="text-input--underbar" placeholder="name" value="" id="name"><br />
+                        <input type="text" class="text-input--underbar" placeholder="mobile number" value="" id="number">
+                        <br><br>
+                        <ons-button modifier="large" class="login-button" onclick="insert()">save</ons-button>
+                        <br><br>
+                        
+                    </div>
+                </ons-col>
+            </ons-row>
+
+        </ons-page>
+    </ons-template>
+
+    <ons-template id="page3.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="menu.toggle()">
+                        <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center">About Us</div>
+            </ons-toolbar>
+
+            <ons-row style="margin-top: 100px; text-align: center;">
+                <ons-col>
+                    <p style="color: #999; font-size: 13px;">Press me,<br> Message will be sent to all your emergency contacts with your location.</p>
+                    <ons-button modifier="light" >
+                        PhoneGuy
+                    </ons-button>
+                    
+
+                </ons-col>
+            </ons-row>
+        </ons-page>
+    </ons-template>
+
+
+    <script type="text/javascript">
+        
+        function insert() {
+            var name = document.getElementById('name').value;
+            var number = document.getElementById('number').value;
+            db.transaction(function (tx) {
+                
+                tx.executeSql("INSERT INTO secure (name, number) VALUES (?,?)", [name, number], function (tx, res) {
+                   
+
+                 
+                },false
+                });
+            });
+        }
+
+        function message()
+        {
+            var messageInfo = {
+                phoneNumber: "9001727998",      //retrive this from databse
+                textMessage: 'Latitude: ' + position.coords.latitude + '\n' +
+                  'Longitude: ' + position.coords.longitude + '\n'
+            };
+
+            sms.sendMessage(messageInfo, function (message) {
+                alert('message sent ');
+            }, function (error) {
+                alert('this is shit all went wrong ');
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        // Wait for Cordova to load
+        document.addEventListener("deviceready", onDeviceReady, false);
+        var pos;
+        var db;
+        // Cordova is ready
+        function onDeviceReady() {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            db = window.sqlitePlugin.openDatabase({ name: "my.db" });
+
+            db.transaction(function (tx) {
+               
+                tx.executeSql('CREATE TABLE IF NOT EXISTS secure (id integer primary key, name text, number integer)');
+                
+            });
+        }
+
+        var onSuccess = function (position) {
+           pos=position
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: ' + error.code + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+    </script>
+</body>
+</html>
